@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'lesson_ob/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  </head>
+  <body>
+    <h1>HELLO</h1>
+    <form method="post">{% csrf_token %}
+    	{% for field in registration_form %}
+    		<p>
+    			{{field.label_tag}}
+    			{{field}}
+
+    			{% if field.help_text %}
+    				<small style="color: grey;">{{field.help_text}}</small>
+    			{% endif %}
+
+    			{% for error in field.errors %}
+    				<p style="color: red;">{{error}}</p>
+    			{% endfor %}
+    		</p>
+    	{% endfor %}
+    	<button type="submit">Register</button>
+
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  </body>
+</html>

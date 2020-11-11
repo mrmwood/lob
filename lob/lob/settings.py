@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'lesson_ob.apps.LessonObConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +67,10 @@ TEMPLATES = [
         },
     },
 ]
+
+#overwrite Djangos user model for a custom usermodel
+#I have created in my lesson_ob app - models - Account
+AUTH_USER_MODEL = "lesson_ob.Account"
 
 WSGI_APPLICATION = 'lob.wsgi.application'
 
