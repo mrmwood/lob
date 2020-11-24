@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'lesson_ob/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-  </head>
-  <body>
-    <h1>HELLO</h1>
-    <div class="ui animated button" tabindex="0">
-      <div class="visible content">Next</div>
-      <div class="hidden content">
-        <i class="right arrow icon"></i>
-      </div>
-    </div>
-    <div class="ui vertical animated button" tabindex="0">
-      <div class="hidden content">Shop</div>
-      <div class="visible content">
-        <i class="shop icon"></i>
-      </div>
-    </div>
-    <div class="ui animated fade button" tabindex="0">
-      <div class="visible content">Sign-up for a Pro account</div>
-      <div class="hidden content">
-        $12.99 a month
-      </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-  </body>
-</html>
+{% extends 'lesson_ob/base.html' %}
+
+{% block content %}
+
+<h1>Users</h1>
+{% for account in accounts %}
+  <p>{{account}}</p>
+{% endfor %}
+{% endblock content %}

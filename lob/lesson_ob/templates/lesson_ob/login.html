@@ -2,13 +2,13 @@
     <!-- {% load static %} -->
     {% block content %}
 
-    <h2>Register</h2>
+    <h2>Login</h2>
     <form method="post">
       <!-- ALWAYS add this line to your templates if  you want
       to use a form from forms.py - they initiate encryption tokens
       They are for security reasons (ending your session is static too long)-->
       {% csrf_token %}
-    	{% for field in registration_form %}
+    	{% for field in login_form %}
     		<p>
     			{{field.label_tag}}
     			{{field}}
@@ -17,12 +17,24 @@
     				<small style="color: grey;">{{field.help_text}}</small>
     			{% endif %}
 
-    			{% for error in field.errors %}
-    				<p style="color: red;">{{error}}</p>
-    			{% endfor %}
     		</p>
     	{% endfor %}
-    	<button type="submit">Register</button>
+
+      {% for field in login_form %}
+  			{% for error in field.errors %}
+  				<p style="color: red;">{{error}}</p>
+  			{% endfor %}
+      {% endfor %}
+
+      <!-- This will display any of the non field errors caught by the
+      raise forms.ValidationError("Invalid login") on line 34 of forms.py-->
+      {% if login_form.non_field_errors %}
+        <div style="color:red;">
+          <p>{{login_form.non_field_errors}}</p>
+        </div>
+      {% endif %}
+
+    	<button type="submit">Log in</button>
 
     </form>
 
