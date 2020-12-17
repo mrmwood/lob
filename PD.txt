@@ -1,0 +1,20 @@
+If you delete the database:
+
+make sure you delete the migrations in the migrations
+folder too
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+Type in:
+Email: mark@msn.com
+UN: mark
+PW: password
+PW: password1Password to easy - go ahead (y/n)
+python manage.py runserver
+
+other website user:
+
+Email: katy@msn.com
+UN: katy
+PW: QAZXCV123

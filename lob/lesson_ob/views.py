@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 #import here any classes I need from forms.py
-from lesson_ob.forms import RegistrationForm, AccountAuthenticationForm
+from lesson_ob.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from django.http import HttpResponse
 from lesson_ob.models import Account
 # Create your views here.
@@ -12,7 +12,7 @@ def index(request):
 
     accounts = Account.objects.all()
     context['accounts'] = accounts
-    return render(request,"lesson_ob/index.html", context)
+    return render(request,"index.html", context)
 
 def registration_view(request):
 	context = {}
@@ -30,7 +30,7 @@ def registration_view(request):
 	else: #GET request
 		form = RegistrationForm()
 		context['registration_form'] = form
-	return render(request, 'lesson_ob/register.html', context)
+	return render(request, 'register.html', context)
 
 def logout_view(request):
     logout(request)
@@ -65,4 +65,26 @@ def login_view(request):
         form = AccountAuthenticationForm()
 
     context['login_form'] = form
-    return render(request, 'lesson_ob/login.html', context)
+    return render(request, 'login.html', context)
+
+
+def account_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    context = {}
+
+    if request.POST:
+        form = AccountUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AccountUpdateForm(
+            initial={
+                "email": request.user.email,
+                "username": request.user.username,
+            }
+        )
+    context['account_form'] = form
+    return render(request, 'account.html', context)

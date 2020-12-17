@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#If we want to test our change password feature in dev environment
+#type this but needs changing when deployed
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #During Development ONLY
 
 # Application definition
 
