@@ -10,10 +10,12 @@ from lesson_ob.models import Account
 #Django via django.contrib.auth.forms
 class RegistrationForm(UserCreationForm):
 	email = forms.EmailField(max_length=60, help_text='Required. Add a valid email address')
+	forename = forms.CharField(max_length=100)
+	surname = forms.CharField(max_length=100)
 
 	class Meta:
 		model = Account
-		fields = ("email", "username", "password1", "password2")
+		fields = ("forename","surname","email", "username", "password1", "password2")
 
 
 class AccountAuthenticationForm(forms.ModelForm):
